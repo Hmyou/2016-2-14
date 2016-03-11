@@ -1,0 +1,332 @@
+* {
+   padding: 0;
+   margin: 0;
+}
+
+ol,
+ul,
+li {
+   list-style-type: none;
+}
+
+#content {
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   position: absolute;
+}
+
+.content-wrap {
+   position: relative;
+}
+
+.content-wrap > li {
+   float: left;
+   overflow: hidden;
+   position: relative;
+}
+.path{
+    width: 100%;
+    height: 14%;
+    background-color: rgba(0,0,0,0.25);
+    position: absolute;
+    top:90%;
+    left:0;
+}
+.a-bg,.b-bg,.c-bg,.d-bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.a-bg-img,.b-bg-img,.c-bg-img,.d-bg-img{
+    width: 100%;
+    height: 100%;
+    background-image:url(images/a-bg.png);
+    background-size: 100% 100%;
+}
+.b-bg-img{
+  background-image:url(images/b-bg.png);
+}
+.c-bg-img{
+  background-image:url(images/c-bg.png);
+}
+.d-bg-img{
+  background-image:url(images/d-bg.png);
+}
+.charector {
+   background: url(images/boy.png) 0px -906px no-repeat;
+   width: 151px;
+   height: 291px;
+   position: absolute;
+   z-index:999;
+   left: 0%;
+   top: 55%;
+}
+
+.slowWalk {
+     /*规定 @keyframes 动画的名称。*/
+    -webkit-animation-name: person-slow; 
+    /*规定动画完成一个周期所花费的秒或毫秒。默认是 0*/
+    -webkit-animation-duration: 950ms;
+    /*规定动画被播放的次数。默认是 1。 infinite(循环播放)*/
+    -webkit-animation-iteration-count: infinite;
+    /*动画切换的方式是一帧一帧的改变*/
+    -webkit-animation-timing-function: steps(1, start);
+    -moz-animation-name: person-slow;
+    -moz-animation-duration: 950ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: steps(1, start)
+}
+
+@-webkit-keyframes person-slow {
+   0% {
+       background-position: -906px -0px;
+   }
+   25% {
+       background-position: -453px -0px;
+   }
+   50% {
+       background-position: -755px -0px;
+   }
+   75% {
+       background-position: -302px -0px;
+   }
+   100% {
+       background-position: -906px -0px;
+   }
+}
+
+@-moz-keyframes person-slow {
+   0% {
+       background-position: -906px -0px;
+   }
+   25% {
+       background-position: -453px -0px;
+   }
+   50% {
+       background-position: -755px -0px;
+   }
+   75% {
+       background-position: -302px -0px;
+   }
+   100% {
+       background-position: -906px -0px;
+   }
+}
+
+.boy-rotate {
+   -webkit-animation-name: boy-rotate;
+   -webkit-animation-duration: 850ms;
+   -webkit-animation-iteration-count: 1;
+   -webkit-animation-timing-function: step-start;
+   -webkit-animation-fill-mode: forwards;
+   -moz-animation-name: boy-rotate;
+   -moz-animation-duration: 850ms;
+   -moz-animation-iteration-count: 1;
+   -moz-animation-timing-function: step-start;
+   -moz-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes boy-rotate {
+   0% {
+       background-position: -603px -291px;
+   }
+   16.7% {
+       background-position: -150px -0px;
+   }
+   33.4% {
+       background-position: -453px -291px;
+   }
+   50.1% {
+       background-position: -0px -0px;
+   }
+   66.8% {
+       background-position: -903px -291px;
+   }
+   83.5% {
+       background-position: -753px -291px;
+   }
+   100% {
+       background-position: -603px -291px;
+   }
+}
+
+@-moz-keyframes boy-rotate {
+   0% {
+       /*background-position: -603px -291px;*/
+   }
+   16.7% {
+       background-position: -150px -0px;
+   }
+   33.4% {
+       background-position: -453px -291px;
+   }
+   50.1% {
+       background-position: -0px -0px;
+   }
+   66.8% {
+       background-position: -903px -291px;
+   }
+   83.5% {
+       background-position: -753px -291px;
+   }
+   100% {
+       background-position: -603px -291px;
+   }
+}
+
+.button {
+    position: absolute;
+    width: 100%;height:100%;
+    z-index: 9999;
+    background-image:url(images/button.png);
+    background-size: 100% 100%;
+    display: hidden;
+}
+.load-blank{
+    position: absolute;
+    width: 100%;height:100%;
+    z-index: 9999;
+    background : #000000;
+    background-size: 100% 100%;
+}
+.pauseWalk {
+    animation-play-state: paused;
+}
+
+#you {
+    background: url(images/girl-rotate.png) -755px -0px no-repeat;
+    position: absolute;
+    top: 55%;
+    left:85%;
+    width: 151px;
+    height: 291px;
+}
+
+.you-rotate {
+    -webkit-animation-name: you-rotate;
+    -webkit-animation-duration: 850ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: step-start;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: you-rotate;
+    -moz-animation-duration: 850ms;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: step-start;
+    -moz-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes you-rotate {
+    0% {
+        background-position: -604px -0px;
+    }
+    16.7% {
+        background-position: -151px -0px;
+    }
+    33.4% {
+        background-position: -906px -0px;
+    }
+    50.1% {
+        background-position: -0px -0px;
+    }
+    66.8% {
+        background-position: -302px -0px;
+    }
+    83.5% {
+        background-position: -453px -0px;
+    }
+    100% {
+        background-position: -604px -0px;
+    }
+}
+
+@-moz-keyframes you-rotate {
+    0% {
+        /*background-position: -604px -0px;*/
+    }
+    16.7% {
+        background-position: -151px -0px;
+    }
+    33.4% {
+        background-position: -906px -0px;
+    }
+    50.1% {
+        background-position: -0px -0px;
+    }
+    66.8% {
+        background-position: -302px -0px;
+    }
+    83.5% {
+        background-position: -453px -0px;
+    }
+    100% {
+        background-position: -604px -0px;
+    }
+}
+
+/*雪花*/
+
+#snowflake {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.snowRoll {
+    position: absolute;
+    opacity: 0;
+    -webkit-animation-name: mysnow;
+    -webkit-animation-duration: 20s;
+    -moz-animation-name: mysnow;
+    -moz-animation-duration: 20s;
+    height: 80px;
+}
+
+@-webkit-keyframes mysnow {
+    0% {
+        bottom: 100%;
+    }
+    50% {
+        -webkit-transform: rotate(1080deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+    }
+}
+
+@-moz-keyframes mysnow {
+    0% {
+        bottom: 100%;
+    }
+    50% {
+        -moz-transform: rotate(1080deg);
+    }
+    100% {
+        -moz-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+    }
+}
+
+.note{
+  width: 570px;height: 62px;
+  position: absolute;
+  top:8%;
+  left:8%;
+  display: none;
+  background:url(images/note.png) 0 0 no-repeat;
+}
+.note1{
+  background-position: -0px -0px;
+}
+.note2{
+  background-position: -0px -62px;
+}
+.note3{
+  background-position: -0px -124px;
+}
+.note4{
+  height: 124px;
+  background-position: -0px -186px;
+}

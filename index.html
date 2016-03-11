@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Love.U-txc(from.hj)</title>
+    <link rel='stylesheet' href='style.css' />
+    <script src="jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="swipe.js"></script>
+    <script type="text/javascript" src="BoyWalk.js"></script>
+</head>
+
+<body>
+    <div class="load-blank"></div>
+    <div id='content'>
+        <ul class='content-wrap'>
+            <li>
+                <div class="a-bg">
+                    <div class="a-bg-img"></div>
+                    <div class="path"></div>
+                </div>
+            </li>
+            <li>
+                <div class="b-bg">
+                    <div class="b-bg-img"></div>
+                    <div class="path"></div>
+                </div>
+            </li>
+            <li>
+                <div class="c-bg">
+                    <div class="c-bg-img"></div>
+                    <div class="path"></div>
+                </div>
+            </li>
+            <li>
+                <div class="d-bg">
+                    <div class="d-bg-img"></div>
+                    <div class="path"></div>
+                </div>
+                <div id="you"></div>
+                <div id="snowflake"></div>
+            </li>
+        </ul>
+        <div id="me" class="charector"></div>
+        <div class="note note1"></div>
+        <div class="note note2"></div>
+        <div class="note note3"></div>
+        <div class="note note4"></div>
+    </div>
+    <div class="button"></div>
+</body>
+<script type="text/javascript">
+    $(function() {
+        var container = $("#content");
+        var swipe = Swipe(container);
+        visualWidth = container.width();
+        visualHeight = container.height();
+        // 页面滚动到指定的位置
+        function scrollTo(time, proportionX) {
+            var distX = container.width() * proportionX;
+            swipe.scrollTo(distX, time);
+        }
+    
+        var me = BoyWalk();
+        var you = {
+            elem: $('#you'),
+            getHeight: function() {
+                return this.elem.height();
+            },
+            // 转身动作
+            rotate: function() {
+                this.elem.addClass('you-rotate');
+            },
+            setPosition: function() {
+                this.elem.css({
+                    left: visualWidth / 2,
+                    top: bridgeY - this.getHeight()
+                });
+            },
+            getPosition: function() {
+                return this.elem.position();
+            },
+            getWidth: function() {
+                return this.elem.width()
+            }
+        };
+
+        // 音乐配置
+        var audioConfig = {
+            enable: true, // 是否开启音乐
+            cycleURL: 'http://www.imooc.com/upload/media/circulation.wav' // 正常循环播放地址
+        };
+
+        function Hmlt5Audio(url, isloop) {
+            var audio = new Audio(url);
+            audio.autoPlay = true;
+            audio.loop = isloop || false;
+            audio.play();
+            return {
+                end: function(callback) {
+                    audio.addEventListener('ended', function() {
+                        callback();
+                    }, false);
+                }
+            };
+        }
+
+        var snowflakeURl = [
+            'images/snow1.png',
+            'images/snow2.png',
+            'images/snow3.png',
+            'images/star1.png',
+            'images/star2.png',
+            'images/heart.png'
+        ]
+        function snowflake() {
+
+            var $flakeContainer = $('#snowflake');
+
+            // 随机六张图
+            function getImagesName() {
+                return snowflakeURl[[Math.floor(Math.random() * 6)]];
+            }
+            // 创建一个雪花元素
+            function createSnowBox() {
+                var url = getImagesName();
+                return $('<div class="snowbox" />').css({
+                    'width': 41,
+                    'height': 41,
+                    'position': 'absolute',
+                    'backgroundSize': 'cover',
+                    'zIndex': 100000,
+                    'top': '-41px',
+                    'backgroundImage': 'url(' + url + ')'
+                }).addClass('snowRoll');
+            }
+            // 开始飘花
+            setInterval(function() {
+                // 运动的轨迹
+                var startPositionLeft = Math.random() * visualWidth - 100,
+                    startOpacity    = 1,
+                    endPositionTop  = visualHeight - 40,
+                    endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
+                    duration        = visualHeight * 10 + Math.random() * 5000;
+
+                // 随机透明度，不小于0.5
+                var randomStart = Math.random();
+                randomStart = randomStart < 0.5 ? startOpacity : randomStart;
+
+                // 创建一个雪花
+                var $flake = createSnowBox();
+
+                // 设计起点位置
+                $flake.css({
+                    left: startPositionLeft,
+                    opacity : randomStart
+                });
+
+                // 加入到容器
+                $flakeContainer.append($flake);
+
+                // 开始执行动画
+                $flake.animate({
+                    top: endPositionTop,
+                    left: endPositionLeft,
+                    opacity: 0.7
+                }, duration, function() {
+                    $(this).remove() //结束后删除
+                });    
+            }, 200);
+        }
+
+        // 开始
+        $(".button").click(function() {
+            Hmlt5Audio(audioConfig.cycleURL, true);
+            $(".load-blank").remove();
+            $(".button").fadeOut(2000);
+            me.walkTo(4000, 0.04)
+                .then(function() {
+                    // 开始页面滚动
+                    scrollTo(16000, 3);   
+                }).then(function() {
+                    return me.walkTo(21000, 0.7);
+                }).then(function(){
+                    $("#me").addClass('pauseWalk');
+                }).then(function(){
+                    me.rotate();
+                    you.rotate();
+                })
+                .then(function(){
+                    snowflake();
+                });
+            $(".note1").fadeIn(4000, function() {
+                $(".note1").fadeOut(2000, function() {
+                    $(".note2").fadeIn(4000, function() {
+                        $(".note2").fadeOut(2000, function() {
+                            $(".note3").fadeIn(4000, function() {
+                                $(".note3").fadeOut(2000, function() {
+                                    $(".note4").fadeIn(4000, function() {});
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    })
+</script>
+
+</html>
